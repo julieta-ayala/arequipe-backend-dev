@@ -1,3 +1,5 @@
 FlaskBlog/flaskblog/__pycache__
 FlaskBlog/database.py
 FlaskBlog/flaskblog/site.db
+FlaskBlog/flaskblog/static/profile_pics/
+!FlaskBlog/flaskblog/static/profile_pics/default.jpg
