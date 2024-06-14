@@ -8,7 +8,7 @@
                 <p class="text-secondary">{{ current_user.email }}</p>
             </div>
         </div>
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Account Info</legend>
@@ -27,6 +27,7 @@
                         {{ form.username(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <br/>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     <!-- Let the user know the errors -->
@@ -41,6 +42,19 @@
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <br />
+                <div class="form-group">
+                    {{ form.picture.label() }}
+                    <br/>
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <br />
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <br />
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}

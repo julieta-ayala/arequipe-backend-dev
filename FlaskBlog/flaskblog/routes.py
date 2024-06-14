@@ -1,3 +1,6 @@
+import os
+import secrets
+from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
@@ -67,6 +70,9 @@ def logout():
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            file_name = save_picture(form.picture.data)
+            current_user.image_file = file_name
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
@@ -78,3 +84,21 @@ def account():
 
     img = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=img, form=form)
+
+def save_picture(form_picture):
+    rand_hex = secrets.token_hex(8)
+    _, ext = os.path.splitext(form_picture.filename)
+    file_name = rand_hex + ext
+    file_path = os.path.join(app.root_path, 'static/profile_pics', file_name)
+    
+    # Resize image before saving
+    i = Image.open(form_picture)
+    i.thumbnail((125, 125))
+    i.save(file_path)
+
+    # Delete prev profile pic
+    prev_picture = os.path.join(app.root_path, 'static/profile_pics', current_user.image_file)
+    if os.path.exists(prev_picture):
+        os.remove(prev_picture)
+        
+    return file_name
