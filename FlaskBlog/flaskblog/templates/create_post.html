@@ -4,19 +4,19 @@
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Post</legend>
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
             <div class="form-group">
                 {{ form.title.label(class="form-control-label") }}
                 <!-- Let the user know the errors -->
                 {% if form.title.errors %}
-                {{ form.title(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.title.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 {% else %}
-                {{ form.title(class="form-control form-control-lg") }}
+                    {{ form.title(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <br>
@@ -24,14 +24,14 @@
                 {{ form.content.label(class="form-control-label") }}
                 <!-- Let the user know the errors -->
                 {% if form.content.errors %}
-                {{ form.content(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.content.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 {% else %}
-                {{ form.content(class="form-control form-control-lg") }}
+                    {{ form.content(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <br>
