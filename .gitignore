@@ -2,6 +2,7 @@ FlaskBlog/flaskblog/__pycache__
 FlaskBlog/flaskblog/main/__pycache__
 FlaskBlog/flaskblog/posts/__pycache__
 FlaskBlog/flaskblog/users/__pycache__
+FlaskBlog/flaskblog/errors/__pycache__
 
 FlaskBlog/database.py
 FlaskBlog/flaskblog/site.db
